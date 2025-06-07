@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: email-service
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: <email>andersonpalmerim12092002@gmail.com
+    password: <password-app>
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  aws:
+    queue:
+      welcome_queue: <queue>
