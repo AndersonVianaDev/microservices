@@ -1,6 +1,6 @@
 package com.anderson.user_service.domain.service.impl;
 
-import com.anderson.user_service.domain.dtos.MessageEventDTO;
+import com.anderson.user_service.domain.dtos.WelcomeMessageDTO;
 import com.anderson.user_service.domain.enums.EventType;
 import com.anderson.user_service.domain.model.User;
 import com.anderson.user_service.domain.service.IMessagePublisher;
@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.UUID;
 
 import static java.util.Objects.nonNull;
@@ -33,10 +34,9 @@ public class UserServiceImpl implements IUserService {
         user = repository.save(user);
 
         messagePublisher.sendToWelcomeQueue(
-                new MessageEventDTO(
+                new WelcomeMessageDTO(
                         user.getName(),
-                        user.getEmail(),
-                        EventType.USER_REGISTERED
+                        user.getEmail()
                 ));
 
         return user;
